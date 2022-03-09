@@ -1,17 +1,24 @@
-import pygame
+import pygame , consts ,sys
 from cells import Cells
+from gameManager import GameManager
+
 # we should start pygame and its stuff :
 
 pygame.init()
-screen = pygame.display.set_mode((800 , 600))
-screen.fill((255,255,120))
+screen = pygame.display.set_mode((700 , 700))
+screen.fill((255,255,255))
+game = GameManager(20 , screen , 30 ,50 ,consts.block_cells)
 
-newOne = Cells(screen , 10 , 10 , (0,0,0))
-#i = 10 
-while True :
-    screen.fill((255,255,120))
-    newOne = Cells(screen , 10, 10 , (0,0,0))
-    # i += 1
-    pygame.display.update()
-    pygame.time.delay(13)
-    pygame.event.pump()
+
+
+
+while True:
+        events = pygame.event.get()
+        keys = []
+        for event in events:
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                keys.append(event.unicode)
+        #game.handle(keys)
+        pygame.time.wait(100)
