@@ -7,20 +7,17 @@ class Cells :
         self.surface = surface 
         self.sx = sx 
         self.sy = sy 
-        self.size = 100
+        self.size = 30
         self.color = color
-        pygame.draw.rect(surface , color , (sx , sy , self.size ,self.size) ,1 )
-        self.set_color((32,54,100))
+        pygame.draw.rect(surface , (0,0,0) , (self.sx , self.sy , self.size ,self.size) ,1 )
+        self.set_color(color)
 
         
-    # def set_color(self ,color):
+    def set_color(self ,color):
         
-    #     self.color = color 
-    #     self.sx += 100
-    #     self.sy += 100
-    #     self.size -= 2
-    #     pygame.draw.rect(self.surface , color , (self.sx  , self.sy  , self.size -2  ,self.size -2 ) ,1 )
-    #     pygame.display.update()
+        self.color = color 
+        pygame.draw.rect(self.surface , color , (self.sx + 1 , self.sy + 1 , self.size - 2 ,self.size -2 ) )
+        pygame.display.update()
 
 pass
 
