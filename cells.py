@@ -1,13 +1,13 @@
-import pygame
+import pygame , consts
 
 
 class Cells :
-    def __init__(self , surface , sx , sy , color ):
+    def __init__(self , surface , sx , sy ,color= consts.back_color ):
 
         self.surface = surface 
         self.sx = sx 
         self.sy = sy 
-        self.size = 30
+        self.size = consts.cell_size
         self.color = color
         pygame.draw.rect(surface , (0,0,0) , (self.sx , self.sy , self.size ,self.size) ,1 )
         self.set_color(color)

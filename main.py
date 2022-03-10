@@ -1,14 +1,18 @@
 import pygame , consts ,sys
 from cells import Cells
 from gameManager import GameManager
+from snake import Snake
 
 # we should start pygame and its stuff :
 
 pygame.init()
-screen = pygame.display.set_mode((700 , 700))
-screen.fill((255,255,255))
-game = GameManager(20 , screen , 30 ,50 ,consts.block_cells)
+screen = pygame.display.set_mode((consts.height, consts.width))
+screen.fill(consts.back_color)
+game = GameManager(consts.table_size, screen, consts.sx, consts.sy, consts.block_cells)
 
+snakes = list()
+for snake in consts.snakes:
+        snakes.append(Snake(snake['keys'], game, (snake['sx'], snake['sy']), snake['color'], snake['direction']))
 
 
 
@@ -20,5 +24,5 @@ while True:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 keys.append(event.unicode)
-        #game.handle(keys)
+        game.handle(keys)
         pygame.time.wait(100)
