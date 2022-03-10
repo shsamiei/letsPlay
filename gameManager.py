@@ -25,11 +25,9 @@ class GameManager :
         pass
 
     def add_snake(self, snake):
-        print("add_snake happen  ! ")
         self.snakes.append(snake)
 
     def kill(self, killed_snake):
-        print("kill happen ! ")
         self.snakes.remove(killed_snake)
 
 
@@ -64,14 +62,12 @@ class GameManager :
     def handle(self, keys):
             
             for snake in self.snakes:
-                print("first loop in handle(gamemanager)")
                 snake.handle(keys)
 
             #for i in range(len(self.snakes)):
 
 
             for snake in self.snakes:
-                print("second loop in handle(gamemanager)")
                 snake.next_move()
 
             self.turn += 1

@@ -16,17 +16,14 @@ class Snake :
          self.direction = direction
          game.get_cell(pos).set_color(color)
          
-         
+
 
     def get_head(self):
-        print('get_head ')
         return self.cells[-1]
 
     def handle(self, keys):
-        print("snake handle func ")
-        #print(keys)
         for key in keys : 
-              #print(key)
+
               if key in self.keys:
                   if self.direction == "LEFT" and self.keys.get(key) != "RIGHT" :
                                  self.direction = self.keys.get(key)
@@ -39,7 +36,6 @@ class Snake :
                   
 
     def val(self, x):
-        print("val happen")
         if x < 0:
             x += self.game.size
 
@@ -49,28 +45,23 @@ class Snake :
         return x
 
     def next_move(self):
-        print("next_move() happen ")
         pos = self.get_head()
         nx , ny =  pos[0] , pos[1]
         nx = self.val(nx + Snake.dx[self.direction])
         ny = self.val(ny + Snake.dy[self.direction])
         new_pos = ( nx , ny )
         color_of_next_pos  = self.game.get_cell(new_pos).color
-        print("the color of next cell is : " , color_of_next_pos)
-        print("the color of back : " , consts.back_color , "the color of fruit : " , consts.fruit_color)
+
         if color_of_next_pos != consts.back_color and color_of_next_pos != consts.fruit_color :
-            print("kill in next move happen ")
             self.game.kill(self)
         else : 
             if color_of_next_pos == consts.fruit_color : 
                 # add this cell to my cells and paint it
-                print("fruit color in next move")
                 self.cells.append(new_pos)
                 self.game.get_cell(new_pos).set_color(self.color)
                 pass 
             else : 
                 # add this cell and paint it but remove the tail cell 
-                print("back color in next move")
                 self.cells.append(new_pos)
                 self.game.get_cell(new_pos).set_color(self.color)
                 self.game.get_cell(self.cells[0]).set_color(consts.back_color)
