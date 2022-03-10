@@ -11,7 +11,7 @@ class GameManager :
         self.sx = sx 
         self.sy = sy
         self.snakes = []
-        #self.turn = 0 
+        self.turn = 0 
         for i in range(self.size):
             tmp = []
             for j in range(self.size):
@@ -25,13 +25,16 @@ class GameManager :
         pass
 
     def add_snake(self, snake):
+        print("add_snake happen  ! ")
         self.snakes.append(snake)
 
     def kill(self, killed_snake):
+        print("kill happen ! ")
         self.snakes.remove(killed_snake)
 
 
     def get_cell(self, pos):
+        
         try:
             return self.cells[pos[0]][pos[1]]
         except:
@@ -59,5 +62,22 @@ class GameManager :
         return ret
 
     def handle(self, keys):
-        self.snakes[0].next_move()
-        pass
+            
+            for snake in self.snakes:
+                print("first loop in handle(gamemanager)")
+                snake.handle(keys)
+
+            #for i in range(len(self.snakes)):
+
+
+            for snake in self.snakes:
+                print("second loop in handle(gamemanager)")
+                snake.next_move()
+
+            self.turn += 1
+            if self.turn % 10 == 0 : 
+                fruit_pos = self.get_next_fruit_pos()
+                self.get_cell(fruit_pos).set_color(consts.fruit_color)
+
+
+        
